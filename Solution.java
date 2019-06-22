@@ -7,59 +7,60 @@ public class Solution {
 	
 	
 	// **** ****
-	static int sumValues(int[] ar, int f, int l) throws Exception {
+	static int sumValues(int[] A, int i, int j) throws Exception {
 		
 		int sum = 0;
 		
 		// **** perform sanity checks ****
-		if ((f < 0) || (f > ar.length)) {
-			throw new Exception("f: " + f + " OutOfRange");
+		if ((i < 0) || (i > A.length)) {
+			throw new Exception("i: " + i + " OutOfRange");
 		}
 		
-		if ((l < 0) || (l > ar.length)) {
-			throw new Exception("l: " + l + " OutOfRange");
+		if ((j < 0) || (j > A.length)) {
+			throw new Exception("j: " + j + " OutOfRange");
 		}
 		
 		// **** compute the sum ****
-		for (int i = f; i <= l; i++)
-			sum += ar[i];
+		for (int k = i; k <= j; k++)
+			sum += A[k];
+		
 		// **** ****
 		return sum;
 	}
 	
 	
 	// **** ****
-	static int prefixSum(int[] ar, int f, int l) throws Exception {
+	static int prefixSum(int[] A, int i, int j) throws Exception {
 		
 		// **** perform sanity checks ****
-		if ((f < 0) || (f > ar.length)) {
-			throw new Exception("f: " + f + " OutOfRange");
+		if ((i < 0) || (i > A.length)) {
+			throw new Exception("i: " + i + " OutOfRange");
 		}
 		
-		if ((l < 0) || (l > ar.length)) {
-			throw new Exception("l: " + l + " OutOfRange");
+		if ((j < 0) || (j > A.length)) {
+			throw new Exception("j: " + j + " OutOfRange");
 		}
 
 		// **** compute the prefix array ****
-		for (int i = 1; i < ar.length; i++ ) {
-			ar[i] += ar[i - 1];
+		for (int k = 1; k < A.length; k++ ) {
+			A[k] += A[k - 1];
 		}
 		
-		// ???? display the prefix array ????
-		System.out.print("prefixSum <<<   ar: [");
-		for (int i = 0; i < ar.length; i++) {
-			if (i < ar.length - 1)
-				System.out.print(ar[i] + ", ");
+		// ???? display the prefix sum array ????
+		System.out.print("prefixSum <<<    A: [");
+		for (int k = 0; k < A.length; k++) {
+			if (k < A.length - 1)
+				System.out.print(A[k] + ", ");
 			else
-				System.out.print(ar[i] + "]");
+				System.out.print(A[k] + "]");
 		}
 		System.out.println();
-
-		// **** return the proper sum ****
-		if (f == 0)
-			return ar[l];
+		
+		// **** return the sum ****
+		if (i == 0)
+			return A[j];
 		else
-			return ar[l] - ar[f - 1];
+			return A[j] - A[i - 1];
 	}
 
 	
@@ -73,21 +74,21 @@ public class Solution {
 		int n = sc.nextInt();
 		
 		// **** read an array or numbers ****
-		int[] ar = new int[n];
-		for (int i = 0; i < n; i++) 
-			ar[i] = sc.nextInt();
+		int[] A = new int[n];
+		for (int k = 0; k < n; k++) 
+			A[k] = sc.nextInt();
 		
 		// **** read the first element ****
-		int f = sc.nextInt();
+		int i = sc.nextInt();
 		
 		// **** read the last element ****
-		int l = sc.nextInt();
+		int j = sc.nextInt();
 		
 		// **** generate and display the sum ****
-		System.out.println("main <<<       sum: " + sumValues(ar, f, l));
+		System.out.println("main <<<       sum: " + sumValues(A, i, j));
 
 		// **** generate and display the prefix sum ****
-		System.out.println("main <<< prefixSum: " + prefixSum(ar, f, l));
+		System.out.println("main <<< prefixSum: " + prefixSum(A, i, j));
 		
         // **** close the scanner ****
         sc.close();
